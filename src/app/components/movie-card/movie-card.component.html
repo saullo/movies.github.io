@@ -1,0 +1,5 @@
+<a [routerLink]="'/movie/' + movie.id">
+  <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="">
+  <h1 class="font-bold mt-2 text-lg">{{ movie.title }}</h1>
+  <span class="text-sm text-gray-500">Released {{ movie.release_date }}</span>
+</a>
