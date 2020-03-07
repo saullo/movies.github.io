@@ -9,9 +9,6 @@ import { MoviesComponent } from './views/movies/movies.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { MovieComponent } from './views/movie/movie.component';
 import { httpInterceptorProviders } from './services/http/interceptors';
-import { MovieVideosComponent } from './views/movie-videos/movie-videos.component';
-import { HomepageComponent } from './views/homepage/homepage.component';
-import { TvshowsComponent } from './views/tvshows/tvshows.component';
 import { MovieAboutComponent } from './views/movie-about/movie-about.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -22,9 +19,6 @@ import { BannerComponent } from './components/banner/banner.component';
     MoviesComponent,
     MovieCardComponent,
     MovieComponent,
-    MovieVideosComponent,
-    HomepageComponent,
-    TvshowsComponent,
     MovieAboutComponent,
     NavbarComponent,
     BannerComponent
