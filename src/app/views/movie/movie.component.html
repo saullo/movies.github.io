@@ -1,5 +1,5 @@
-<div *ngIf="movie"  class="h-full min-h-screen">
-  <app-banner [banner]="movie"></app-banner>
+<div *ngIf="movieService.movie" class="h-full min-h-screen">
+  <app-banner [banner]="movieService.movie"></app-banner>
 
   <div class="mx-auto container">
     <div class="relative flex items-center justify-between h-16">
@@ -15,7 +15,7 @@
         
         <div class="hidden sm:block">
           <div class="flex">
-            <a [routerLink]="'/movie/' + movie.id" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">About</a>
+            <a [routerLink]="'/movieService.movie/' + movieService.movie.id" class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">About</a>
           </div>
         </div>
       </div>

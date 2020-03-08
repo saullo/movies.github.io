@@ -1,18 +1,18 @@
-<div>
-  <app-banner *ngIf="banner" [banner]="banner" [viewMore]="true"></app-banner>
+<div *ngIf="!movieService.loading">
+  <app-banner [banner]="movieService.getRandomBanner()" [viewMore]="true"></app-banner>
   
   <div class="container mx-auto font-sans">
     <h1 class="text-5xl font-bold">In theatres</h1>
-    <div class="flex flex-wrap -mx-4">
-      <app-movie-card class="w-1/6 p-4" *ngFor="let movie of inTheatres" [movie]="movie"></app-movie-card>
+    <div class="grid grid-cols-6 grid-rows-2 gap-6">
+      <app-movie-card *ngFor="let movie of movieService.inTheatres.slice(0, 12)" [movie]="movie"></app-movie-card>
     </div>
     <h1 class="text-5xl font-bold">Discover</h1>
-    <div class="flex flex-wrap -mx-4">
-      <app-movie-card class="w-1/6 p-4" *ngFor="let movie of discover" [movie]="movie"></app-movie-card>
+    <div class="grid grid-cols-6 grid-rows-2 gap-6">
+      <app-movie-card *ngFor="let movie of movieService.discover.slice(0, 12)" [movie]="movie"></app-movie-card>
     </div>
     <h1 class="text-5xl font-bold">Popular</h1>
-    <div class="flex flex-wrap -mx-4">
-      <app-movie-card class="w-1/6 p-4" *ngFor="let movie of popular" [movie]="movie"></app-movie-card>
+    <div class="grid grid-cols-6 grid-rows-2 gap-6">
+      <app-movie-card *ngFor="let movie of movieService.popular.slice(0, 12)" [movie]="movie"></app-movie-card>
     </div>  
   </div>
 </div>

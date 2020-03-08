@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationStart, NavigationEnd, NavigationError, Event } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'movies';
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        window.scrollTo(0, 0)
+      }
+    })
+  }
 }
