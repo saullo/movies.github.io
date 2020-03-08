@@ -15,4 +15,7 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get backgroundImageUrlStyle(): string {
+    return `background-image: url(https://image.tmdb.org/t/p/original/${this.banner.backdrop_path});`
+  }
 }

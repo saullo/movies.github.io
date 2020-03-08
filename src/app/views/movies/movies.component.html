@@ -1,7 +1,7 @@
 <div *ngIf="!loading">
   <app-banner [banner]="banner" [viewMore]="true"></app-banner>
   
-  <div class="container mx-auto font-sans px-6 md:px-4 xl:px-0">
+  <div class="container mx-auto font-sans px-6 md:px-4 xl:px-0 mt-10">
     <div *ngFor="let section of sections">
       <h1 class="text-5xl font-bold">{{ section.title }}</h1>
       <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 md:grid-rows-2 gap-6 md:gap-6">
