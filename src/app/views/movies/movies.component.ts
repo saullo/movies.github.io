@@ -1,8 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MovieClientService } from 'src/app/services/http/clients/movie/movie-client.service';
 import { forkJoin } from 'rxjs';
 import { Movie } from 'src/app/models/movie/movie';
-import { StreamState } from 'http2';
 
 @Component({
   selector: 'app-movies',
