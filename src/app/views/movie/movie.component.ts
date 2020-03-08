@@ -12,23 +12,11 @@ import { Movie } from 'src/app/models/movie/movie';
 })
 export class MovieComponent implements OnInit {
   constructor(
-    private http: HttpClient, 
     private router: ActivatedRoute,
     public movieService: MovieService
   ) { }
 
   ngOnInit(): void {
-    this.router.params.subscribe(routerParam => {
-      if (this.movieService.movie == null || this.movieService.movie.id != routerParam.id) {
-        this.http.get<Movie>(`/movie/${routerParam.id}`).subscribe(
-          (response) => {
-            this.movieService.movie = response
-            console.log(this.movieService.movie)
-          },
-          (error) => console.log(error)
-        )
-      }
-      
-    })
+    this.router.params.subscribe(routerParam => this.movieService.get(routerParam.id))
   }
 }

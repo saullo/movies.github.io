@@ -1,4 +1,4 @@
-<div *ngIf="movieService.movie" class="h-full min-h-screen">
+<div *ngIf="!movieService.loading" >
   <app-banner [banner]="movieService.movie"></app-banner>
 
   <div class="mx-auto container">

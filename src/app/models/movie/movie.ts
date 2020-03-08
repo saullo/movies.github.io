@@ -1,3 +1,5 @@
+import { Genre } from '../genre/genre'
+
 export class Movie {
   id: number
   title: string
@@ -11,5 +13,5 @@ export class Movie {
   budget: number
   runtime: number
   status: string
-  genres: []
+  genres: Genre[]
 }

@@ -1,54 +1,38 @@
-<div *ngIf="!loading" class="flex flex-col">
+<div class="flex flex-col">
   <div class="bg-gray-900 rounded-lg px-10 py-6">
-    <h1 class="text-3xl flex-initial border-b-2 border-gray-800 mb-4">Information</h1>
-    <ul class="grid grid-flow-col grid-cols-3 grid-rows-2 gap-6">
-      <li>
-        <h3 class="text-lg text-gray-700">Original title</h3>
-        <span class="text-base">{{ movieService.movie.original_title }}</span>
-      </li>
-      <li>
-        <h3 class="text-lg text-gray-700">Original language</h3>
-        <span class="text-base">{{ movieService.movie.original_language }}</span>
-      </li>
-      <li>
-        <h3 class="text-lg text-gray-700">Status</h3>
-        <span class="text-base">{{ movieService.movie.status }}</span>
-      </li>
+    <div *ngIf="!movieService.loading">
+      <h1 class="text-3xl flex-initial border-b-2 border-gray-800 mb-4">Information</h1>
+      <ul class="grid grid-flow-col grid-cols-3 grid-rows-2 gap-6">
+        <li *ngFor="let information of informationList">
+          <h3 class="text-lg text-gray-700">{{ information.title }}</h3>
+          <span class="text-base">{{ information.value }}</span>
+        </li>
+        <li>
+          <h3 class="text-lg text-gray-700">Genres</h3>
+          <div class="text-base flex -ml-2">
+            <div *ngFor="let genre of movieService.movie.genres" class="bg-gray-800 hover:bg-gray-700 cursor-pointer text-white px-4 py-px text-sm rounded-lg text-center ml-2">
+              {{ genre.name }}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-      <li>
-        <h3 class="text-lg text-gray-700">Duration</h3>
-        <span class="text-base">{{ movieService.movie.runtime }}</span>
-      </li>
-
-      <li>
-        <h3 class="text-lg text-gray-700">Budget</h3>
-        <span class="text-base">{{ movieService.movie.budget }}</span>
-      </li>
-
-      <li>
-        <h3 class="text-lg text-gray-700">Revenue</h3>
-        <span class="text-base">{{ movieService.movie.revenue }}</span>
-      </li>
-
-      <li>
-        <h3 class="text-lg text-gray-700">Genres</h3>
-        <div class="flex -ml-2">
-          <span *ngFor="let genre of movieService.movie.genres;index as index" class="text-sm bg-gray-600 hover:bg-gray-800 cursor-pointer rounded-lg px-4 py-1 text-center ml-2">{{ genre.name }}</span>
+    <div *ngIf="!loading">
+      <h1 class="text-3xl flex-initial border-b-2 border-gray-800 mb-4 mt-10">Cast</h1>
+      <div class="grid grid-cols-12 gap-6">
+        <div *ngFor="let cast of casts">
+          <img class="rounded" [src]="'https://image.tmdb.org/t/p/original/' + cast.profile_path" alt="" />
+          <span class="font-bold text-sm">{{ cast.name }}</span>
         </div>
-      </li>
-    </ul>
-
-    <h1 class="text-3xl flex-initial border-b-2 border-gray-800 mb-4 mt-10">Cast</h1>
-    <div class="grid grid-cols-12 gap-6">
-      <div *ngFor="let cast of credits.cast.slice(0, 12)">
-        <img class="rounded" [src]="'https://image.tmdb.org/t/p/original/' + cast.profile_path" alt="" />
-        <span class="font-bold text-sm">{{ cast.name }}</span>
       </div>
     </div>
   </div>
 
-  <h1 class="text-3xl mt-10">Recommendations</h1>
-  <div class="grid grid-flow-col grid-cols-6 gap-6">
-    <app-movie-card *ngFor="let recommendation of recommendations" [movie]="recommendation"></app-movie-card>
+  <div *ngIf="!loading">
+    <h1 class="text-3xl mt-10">Recommendations</h1>
+    <div class="grid grid-flow-col grid-cols-6 gap-6">
+      <app-movie-card *ngFor="let recommendation of recommendations" [movie]="recommendation"></app-movie-card>
+    </div>
   </div>
 </div>

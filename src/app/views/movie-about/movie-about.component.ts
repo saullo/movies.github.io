@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { MovieCollection } from 'src/app/models/movie-collection/movie-collection';
 import { Movie } from 'src/app/models/movie/movie';
 import { MovieService } from 'src/app/services/movie/movie.service';
 import { forkJoin } from 'rxjs';
+import { MovieClientService } from 'src/app/services/http/clients/movie/movie-client.service';
+import { Credits } from 'src/app/models/credits/credits';
+import { Cast } from 'src/app/models/cast/cast';
 
 @Component({
   selector: 'app-movie-about',
@@ -13,25 +14,42 @@ import { forkJoin } from 'rxjs';
 })
 export class MovieAboutComponent implements OnInit {
   loading: boolean
-  credits
-  recommendations: Movie[]
-  movieId = this.router.snapshot.parent.paramMap.get('id')
+  credits: Credits
+  recommendationsList: Movie[]
+  informationList = [
+    { title: 'Original title', value: this.movieService.movie.original_title },
+    { title: 'Original language', value: this.movieService.movie.original_language },
+    { title: 'Status', value: this.movieService.movie.status },
+    { title: 'Duration', value: this.movieService.movie.runtime },
+    { title: 'Budget', value: this.movieService.movie.budget },
+    { title: 'Revenue', value: this.movieService.movie.revenue }
+  ]
 
-  constructor(private http: HttpClient, private router: ActivatedRoute, public movieService: MovieService) { }
+  constructor(
+    private router: ActivatedRoute, 
+    private movieClient: MovieClientService,
+    public movieService: MovieService) { }
 
   ngOnInit(): void {
-    this.router.params.subscribe(routerParam => {
+    this.router.params.subscribe(({ id }) => {
       this.loading = true
-      const credits = this.http.get<any>(`/movie/${routerParam.id}/credits`)
-      const recommendations = this.http.get<MovieCollection>(`/movie/${routerParam.id}/recommendations`)
+      const credits = this.movieClient.credits(id)
+      const recommendations = this.movieClient.recommendations(id)
 
       forkJoin([credits, recommendations]).subscribe(response => {
-        response[0].cast = response[0].cast.filter(element => element.profile_path != null)
+        console.log(response)
         this.credits = response[0]
-        this.recommendations = response[1].results.splice(0, 6)
+        this.recommendationsList = response[1].results
         this.loading = false
       })
     })
   }
 
+  get casts(): Cast[] {
+    return this.credits.cast.filter(cast => cast.profile_path != null).slice(0, 12)
+  }
+
+  get recommendations(): Movie[] {
+    return this.recommendationsList.filter(recommendation => recommendation.poster_path != null).slice(0, 6)
+  }
 }

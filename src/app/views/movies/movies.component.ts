@@ -1,5 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { MovieService } from 'src/app/services/movie/movie.service';
+import { MovieClientService } from 'src/app/services/http/clients/movie/movie-client.service';
+import { forkJoin } from 'rxjs';
+import { Movie } from 'src/app/models/movie/movie';
+import { StreamState } from 'http2';
 
 @Component({
   selector: 'app-movies',
@@ -7,10 +10,31 @@ import { MovieService } from 'src/app/services/movie/movie.service';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  constructor(public movieService: MovieService) { }
+  sections = [
+    { title: 'In theatres', movies: [] },
+    { title: 'Discover', movies: [] },
+    { title: 'Popular', movies: [] },
+  ]
+  banner: Movie
+  loading: boolean
+
+  constructor(private movieClient: MovieClientService) { }
 
   ngOnInit(): void {
-    if (!this.movieService.hasMovies) this.movieService.getMovies()
-  }
+    this.loading = true
+    const nowPlaying = this.movieClient.nowPlaying()
+    const popular = this.movieClient.popular()
+    const discover = this.movieClient.discover()
 
+    forkJoin([nowPlaying, popular, discover]).subscribe(response => {
+      this.sections[0].movies = response[0].results
+      this.sections[1].movies = response[1].results
+      this.sections[2].movies = response[2].results
+
+      const bannerIndex = Math.floor(Math.random() * this.sections[1].movies.length)
+      this.banner = this.sections[1].movies[bannerIndex]
+
+      this.loading = false
+    })
+  }
 }
