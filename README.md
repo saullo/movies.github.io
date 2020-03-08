@@ -1,27 +1,48 @@
 # Movies
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+This website show information about movies using [TheMovieDb](https://www.themoviedb.org/) api.
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-## Code scaffolding
+### Prerequisites
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You need to have NodeJs >= 12 installed on your machine
 
-## Build
+### Installing
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Install dependencies using
 
-## Running unit tests
+```
+yarn
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+or
 
-## Running end-to-end tests
+```
+npm install
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Built With
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* [AngularJs](https://angular.io/) - The web framework used
+* [TheMovieDb](https://www.themoviedb.org/) - Api used
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Authors
+
+* **Saullo Bretas Silva** - *Initial work* - [Github](https://github.com/saullo)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+* I created this project thinking about a job vacancy

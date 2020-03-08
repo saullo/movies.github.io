@@ -15,10 +15,7 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
     this.router.params.subscribe(routerParam => {
       this.http.get(`/movie/${routerParam.id}`).subscribe(
-        (response) => {
-          this.movie = response
-          console.log(response)
-        },
+        (response) => this.movie = response,
         (error) => console.log(error)
       )
     })

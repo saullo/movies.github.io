@@ -1,0 +1,14 @@
+/* TEAM */
+	Made everything: Saullo Bretas Silva
+	Contact: saullo.silva303@gmail.com
+	From: Belo Horizonte, Minas Gerais, Brasil
+
+/* THANKS */
+	Api: TheMovieDb
+  Url: https://www.themoviedb.org/
+
+/* SITE */
+	Last update: 220/03/07
+	Language: English
+	Doctype:HTML5
+	IDE: Visual Studio Code
