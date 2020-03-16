@@ -37,7 +37,6 @@ export class MovieAboutComponent implements OnInit {
       const recommendations = this.movieClient.recommendations(id)
 
       forkJoin([credits, recommendations]).subscribe(response => {
-        console.log(response)
         this.credits = response[0]
         this.recommendationsList = response[1].results
         this.loading = false

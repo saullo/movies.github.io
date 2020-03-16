@@ -20,4 +20,8 @@ export class NavbarComponent implements OnInit {
   onClick(event) {
     if (!this.elementRef.nativeElement.contains(event.target)) this.menuOpen = false
   }
+
+  goTop() {
+    window.scrollTo(0, 0)
+  }
 }
